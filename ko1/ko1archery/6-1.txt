@@ -1,0 +1,31 @@
+LABEL : 1
+IF PIXEL COLOR EQUALS : 23 : 215 : 12413803 : 0
+Keyboard : D4 : KeyDown
+DELAY : 490
+Keyboard : D4 : KeyUp
+Keyboard : W : KeyDown
+DELAY : 15
+Keyboard : W : KeyUp
+Keyboard : D3 : KeyDown
+DELAY : 490
+Keyboard : D3 : KeyUp
+Keyboard : W : KeyDown
+DELAY : 15
+Keyboard : W : KeyUp
+GOTO : 1
+ENDIF
+IF PIXEL COLOR EQUALS : 23 : 251 : 10066329 : 0
+Keyboard : D4 : KeyDown
+DELAY : 75
+Keyboard : D4 : KeyUp
+DELAY : 75
+GOTO : 1
+ENDIF
+IF PIXEL COLOR EQUALS : 22 : 218 : 10031377 : 0
+Keyboard : D3 : KeyDown
+DELAY : 75
+Keyboard : D3 : KeyUp
+DELAY : 75
+GOTO : 1
+ENDIF
+GOTO : 1
