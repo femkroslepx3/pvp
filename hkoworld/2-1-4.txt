@@ -1,0 +1,111 @@
+using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+public static class MacroRunner
+{
+    [DllImport("gdi32.dll")]
+    public static extern int GetPixel(IntPtr hdc, int x, int y);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetDC(IntPtr hWnd);
+
+    [DllImport("user32.dll")]
+    public static extern short GetAsyncKeyState(int vKey);
+
+    [DllImport("AutoItX3_x64.dll", CharSet = CharSet.Unicode)]
+    public static extern void AU3_Send(string text, int mode);
+
+    const int ESC_KEY = 0x1B;
+
+    public static void Start()
+    {
+        IntPtr hdc = GetDC(IntPtr.Zero);
+
+        while (true)
+        {
+            if ((GetAsyncKeyState(ESC_KEY) & 0x8000) != 0)
+                break;
+
+            m:
+
+            int color1 = GetPixel(hdc, 23, 300);
+            if (color1 == 0xA57B9C || color1 == 0x000031)
+            {
+                AU3_Send("{3 down}", 0); Thread.Sleep(25);
+                AU3_Send("{3 up}", 0); Thread.Sleep(25);
+
+                int after1 = GetPixel(hdc, 23, 300);
+                if (after1 == 0x806DCC || after1 == 0x35359C)
+                    SpamR();
+
+                goto m;
+            }
+
+            int color2 = GetPixel(hdc, 23, 335);
+            if (color2 == 0xAD9CA5 || color2 == 0x213173)
+            {
+                AU3_Send("{4 down}", 0); Thread.Sleep(25);
+                AU3_Send("{4 up}", 0); Thread.Sleep(25);
+
+                int after2 = GetPixel(hdc, 23, 335);
+                if (after2 == 0x837CD0 || after2 == 0x444BBA)
+                    SpamR();
+
+                goto m;
+            }
+
+            int color3 = GetPixel(hdc, 23, 371);
+            if (color3 == 0x9C9C9C || color3 == 0x4A637B)
+            {
+                AU3_Send("{5 down}", 0); Thread.Sleep(25);
+                AU3_Send("{5 up}", 0); Thread.Sleep(25);
+
+                int after3 = GetPixel(hdc, 23, 371);
+                if (after3 == 0x7C7CCC || after3 == 0x5762BD)
+                    SpamR();
+
+                goto m;
+            }
+
+            int color4 = GetPixel(hdc, 23, 408);
+            if (color4 == 0xAA9988 || color4 == 0x392908)
+            {
+                AU3_Send("{6 down}", 0); Thread.Sleep(25);
+                AU3_Send("{6 up}", 0); Thread.Sleep(25);
+
+                int after4 = GetPixel(hdc, 23, 408);
+                if (after4 == 0x827AC3 || after4 == 0x4F488A)
+                    SpamR();
+
+                goto m;
+            }
+
+            int color5 = GetPixel(hdc, 23, 445);
+            if (color5 == 0x21218C || color5 == 0x9C0800)
+            {
+                AU3_Send("{7 down}", 0); Thread.Sleep(25);
+                AU3_Send("{7 up}", 0); Thread.Sleep(25);
+
+                int after5 = GetPixel(hdc, 23, 445);
+                if (after5 == 0x4444C5 || after5 == 0x7C3986)
+                    SpamR();
+
+                goto m;
+            }
+
+            goto m;
+        }
+    }
+
+    static void SpamR()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            AU3_Send("{r down}", 0);
+            Thread.Sleep(25);
+            AU3_Send("{r up}", 0);
+            Thread.Sleep(25);
+        }
+    }
+}
